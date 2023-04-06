@@ -11,16 +11,16 @@
 #
 class Course < ApplicationRecord
     
-    def prerequisite 
-        if self.prereq_id != nil
-            self.prerequisite_2.name
-        end
-    end
+belongs_to :prerequisite,
+    class_name: 'Course',
+    foreign_key: :prereq_id,
+    primary_key: :id,
+    optional: true
 
-    belongs_to :prerequisite_2,
-        primary_key: :id,
-        foreign_key: :prereq_id,
-        class_name: :Course
+belongs_to :instructor,
+    class_name: 'User',
+    foreign_key: :instructor_id,
+    primary_key: :id
 # ===================================
 
     # belongs_to :users,
